@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>木贼 - 房县中药志</title>
+    <style>
+        /* 基础重置 + 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7f3;
+            color: #333;
+            line-height: 1.7;
+            padding: 1rem;
+        }
+        
+        /* 容器样式 */
+        .herb-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+        
+        /* 头部样式 */
+        .herb-header {
+            background: linear-gradient(135deg, #2c5530 0%, #4a9c5f 100%);
+            color: #fff;
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+        
+        .herb-name {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .herb-alias {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 0.8rem;
+        }
+        
+        .herb-latin {
+            font-size: 1.2rem;
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        /* 新增：主图片容器样式（第一张图 - 木贼整体外观） */
+        .herb-main-img {
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid #e0e6e1;
+        }
+
+        .herb-main-img img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            max-height: 400px;
+            object-fit: cover;
+        }
+
+        .img-caption {
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+        }
+        
+        /* 主体内容样式 */
+        .herb-content {
+            padding: 1.5rem;
+        }
+        
+        /* 章节样式 */
+        .herb-section {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px dashed #e0e6e1;
+            transition: all 0.3s ease;
+        }
+        
+        .herb-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c5530;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .section-icon {
+            width: 24px;
+            height: 24px;
+            background: #4a9c5f;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .section-content {
+            font-size: 1rem;
+            color: #444;
+            padding-left: 2.2rem;
+            line-height: 1.8;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        /* 新增：形态特征图片容器（第二张图 - 细节特征） */
+        .feature-detail-img {
+            margin: 1.2rem 0;
+            text-align: center;
+        }
+
+        .feature-detail-img img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            max-height: 350px;
+            object-fit: cover;
+        }
+        
+        /* 高亮提示样式 */
+        .highlight-box {
+            background-color: #f0f7f2;
+            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            margin: 0.8rem 0;
+            border-left: 4px solid #4a9c5f;
+            line-height: 1.8;
+        }
+        
+        .highlight-box strong {
+            color: #2c5530;
+        }
+        
+        /* 性味归经网格 */
+        .property-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-left: 2.2rem;
+        }
+        
+        .property-card {
+            background-color: #f8f9fa;
+            padding: 1.2rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #e0e6e1;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .property-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        
+        .property-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        
+        .property-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c5530;
+        }
+        
+        /* 底部样式 */
+        .herb-footer {
+            background-color: #f8f9fa;
+            padding: 1.2rem 1.5rem;
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+            border-top: 1px solid #e0e6e1;
+        }
+        
+        /* 返回顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 44px;
+            height: 44px;
+            background: #4a9c5f;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* 响应式优化 */
+        @media (max-width: 768px) {
+            .herb-name {
+                font-size: 1.8rem;
+            }
+            
+            .herb-header {
+                padding: 1.5rem 1rem;
+            }
+            
+            .herb-content {
+                padding: 1rem;
+            }
+            
+            .section-content {
+                padding-left: 1.8rem;
+                font-size: 0.95rem;
+            }
+            
+            .property-grid {
+                padding-left: 1.8rem;
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .back-to-top {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 38px;
+                height: 38px;
+            }
+
+            .herb-main-img {
+                padding: 1rem;
+            }
+
+            .herb-main-img img {
+                max-height: 300px;
+            }
+
+            .feature-detail-img img {
+                max-height: 280px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .property-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header {
+                font-size: 1.2rem;
+            }
+            
+            .highlight-box {
+                padding: 0.8rem 1rem;
+            }
+
+            .herb-main-img img {
+                max-height: 250px;
+            }
+
+            .feature-detail-img img {
+                max-height: 230px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="herb-container">
+        <!-- 头部信息 -->
+        <header class="herb-header">
+            <h1 class="herb-name">木贼</h1>
+            <div class="herb-alias">【别名】木贼草</div>
+            <div class="herb-latin">EQUISETI HIEMALIS HERBA</div>
+        </header>
+
+        <!-- 新增：第一张图片位置（木贼整体外观图） -->
+        <div class="herb-main-img">
+            <img src="替换为木贼整体外观图路径.jpg" alt="木贼整体外观">
+            <p class="img-caption">图1：木贼植株整体外观</p>
+        </div>
+        
+        <!-- 主体内容 -->
+        <main class="herb-content">
+            <!-- 来源 -->
+            <section class="herb-section">
+                <div class="section-header">
+                    <span class="section-icon">1</span>
+                    来源
+                </div>
+                <div class="section-content">
+                    木贼科植物木贼 <em>Equisetum hiemale L.</em> 的干燥地上部分。
+                </div>
+            </section>
+            
+            <!-- 形态特征 -->
+            <section class="herb-section">
+                <div class="section-header">
+                    <span class="section-icon">2</span>
+                    形态特征
+                </div>
+                <div class="section-content">
+                    多年生草本，高50 cm以上。根茎短，黑色，匍匐，节上长出密集成轮生的黑褐色根。茎丛生，坚硬，直立不分枝，圆筒形，直径4~8 mm，有关节状节，节间中空，茎表面有20~30条纵肋棱，每棱有两列小疣状突起。叶退化成鳞片状，基部合生成筒状的鞘，鞘长6~10 mm，基部有1暗褐色的圈，上部淡灰色，先端有多数棕褐色细齿状裂片，裂片披针状锥形，先端长，锐尖，背部中央有1浅沟，裂片早落，仅在茎先端及幼茎上者不脱落。孢子囊穗生于茎顶，长圆形，长1~1.5 cm，先端具暗褐色的小尖头，由许多轮状排列的六角形盾状孢子叶构成，沿孢子叶的边缘生数个胞子囊，孢子囊大形。孢子多数，同型，圆球形，有2条丝状弹丝，十字形着生，遇水即弹开，以便繁殖。孢子囊穗6~8月间抽出。
+                    
+                    <!-- 新增：第二张图片位置（木贼形态细节图） -->
+                    <div class="feature-detail-img">
+                        <img src="替换为木贼形态细节图路径.jpg" alt="木贼形态细节">
+                        <p class="img-caption">图2：木贼茎部及孢子囊穗细节特征</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 产地与生长习性 -->
+            <section class="herb-section">
+                <div class="section-header">
+                    <span class="section-icon">3</span>
+                    产地与生长习性
+                </div>
+                <div class="section-content">
+                    <div class="highlight-box">
+                        <strong>产地：</strong>房县各乡镇均产。
+                    </div>
+                    <div class="highlight-box">
+                        <strong>生长习性：</strong>生于山坡林下阴湿处、河岸湿地、溪边，喜阴湿的环境，有时也生于杂草地。
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 采收加工 -->
+            <section class="herb-section">
+                <div class="section-header">
+                    <span class="section-icon">4</span>
+                    采收加工
+                </div>
+                <div class="section-content">
+                    夏、秋二季采割，除去杂质，晒干或阴干。
+                </div>
+            </section>
+            
+            <!-- 药材性状 -->
+            <section class="herb-section">
+                <div class="section-header">
+                    <span class="section-icon">5</span>
+                    药材性状
+                </div>
+                <div class="section-content">
+                    长管状，不分枝，长40~60 cm，直径0.2~0.7 cm。表面灰绿色或黄绿色，有18~30条纵棱，棱上有多数细小光亮的疣状突起；节明显，节间长2.5~9 cm，节上着生筒状鳞叶，叶鞘基部和鞘齿黑棕色，中部淡棕黄色。体轻，质脆，易折断，断面中空，周边有多数圆形的小空腔。
+                </div>
+            </section>
+            
+            <!-- 炮制 -->
+            <section class="herb-section">
+                <div class="section-header">
+                    <span class="section-icon">6</span>
+                    炮制
+                </div>
+                <div class="section-content">
+                    除去枯茎及残根，喷淋清水，稍润，切段，干燥。
+                </div>
+            </section>
+            
+            <!-- 性味归经 -->
+            <section class="herb-section">
+                <div class="section-header">
+                    <span class="section-icon">7</span>
+                    性味归经
+                </div>
+                <div class="property-grid">
+                    <div class="property-card">
+                        <div class="property-label">性味</div>
+                        <div class="property-value">甘、苦，平</div>
+                    </div>
+                    <div class="property-card">
+                        <div class="property-label">归经</div>
+                        <div class="property-value">肺、肝经</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- 底部信息 -->
+        <footer class="herb-footer">
+            <p>资料来源：《房县中药志》</p>
+            <p>本页面已适配移动设备与桌面端</p>
+        </footer>
+    </div>
+    
+    <!-- 返回顶部按钮 -->
+    <div class="back-to-top">↑</div>
+
+    <script>
+        // 1. 章节展开/收起功能（带动画）
+        document.querySelectorAll('.section-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('.section-icon');
+                
+                // 切换内容显示状态
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    content.style.opacity = '0';
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    content.style.opacity = '1';
+                    icon.style.transform = 'rotate(90deg)';
+                }
+            });
+        });
+        
+        // 2. 返回顶部功能
+        const backToTopBtn = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 3. 页面加载时初始化所有章节为展开状态
+        document.querySelectorAll('.section-content').forEach(content => {
+            content.style.maxHeight = content.scrollHeight + 'px';
+            content.style.opacity = '1';
+        });
+    </script>
+</body>
+</html>
