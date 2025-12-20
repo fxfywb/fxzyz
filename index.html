@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
+
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>木贼 - 房县中药志</title>
@@ -56,7 +56,7 @@
             opacity: 0.8;
         }
 
-        /* 新增：主图片容器样式（第一张图 - 木贼整体外观） */
+        /* 主图片容器样式（第一张图 - 木贼整体外观） */
         .herb-main-img {
             padding: 1.5rem;
             text-align: center;
@@ -132,10 +132,11 @@
             transition: all 0.3s ease;
         }
 
-        /* 新增：形态特征图片容器（第二张图 - 细节特征） */
+        /* 形态特征图片容器（第二张图 - 细节特征） */
         .feature-detail-img {
-            margin: 1.2rem 0;
+            margin: 1.2rem 0 1.8rem; /* 增加底部外边距避免覆盖文字 */
             text-align: center;
+            overflow: hidden; /* 确保图片不会溢出容器 */
         }
 
         .feature-detail-img img {
@@ -298,8 +299,8 @@
             }
         }
     </style>
-</head>
-<body>
+
+
     <div class="herb-container">
         <!-- 头部信息 -->
         <header class="herb-header">
@@ -308,7 +309,7 @@
             <div class="herb-latin">EQUISETI HIEMALIS HERBA</div>
         </header>
 
-        <!-- 新增：第一张图片位置（木贼整体外观图） -->
+        <!-- 第一张图片位置（木贼整体外观图） -->
         <div class="herb-main-img">
             <img src="images/muzei_main.jpg" alt="木贼整体外观">
             <p class="img-caption">图1：木贼植株整体外观</p>
@@ -336,13 +337,14 @@
                 <div class="section-content">
                     多年生草本，高50 cm以上。根茎短，黑色，匍匐，节上长出密集成轮生的黑褐色根。茎丛生，坚硬，直立不分枝，圆筒形，直径4~8 mm，有关节状节，节间中空，茎表面有20~30条纵肋棱，每棱有两列小疣状突起。叶退化成鳞片状，基部合生成筒状的鞘，鞘长6~10 mm，基部有1暗褐色的圈，上部淡灰色，先端有多数棕褐色细齿状裂片，裂片披针状锥形，先端长，锐尖，背部中央有1浅沟，裂片早落，仅在茎先端及幼茎上者不脱落。孢子囊穗生于茎顶，长圆形，长1~1.5 cm，先端具暗褐色的小尖头，由许多轮状排列的六角形盾状孢子叶构成，沿孢子叶的边缘生数个胞子囊，孢子囊大形。孢子多数，同型，圆球形，有2条丝状弹丝，十字形着生，遇水即弹开，以便繁殖。孢子囊穗6~8月间抽出。
                     
-                    <!-- 新增：第二张图片位置（木贼形态细节图） -->
+                    <!-- 第二张图片位置（木贼形态细节图） -->
                     <div class="feature-detail-img">
-                        <img src="./images/muzei_detail.jpg" alt="木贼形态细节">
+                        <img src="./images/muzei_detail.jpg" alt="木贼形态细节" align="" style="margin: 4px auto; display: block; text-align: center;">
                         <p class="img-caption">图2：木贼茎部及孢子囊穗细节特征</p>
-                    </div>
-                </div>
-            </section>
+                   </div>
+        
+        <!-- 主体内容 -->
+        <main class="herb-content">
             
             <!-- 产地与生长习性 -->
             <section class="herb-section">
@@ -466,5 +468,4 @@
             content.style.opacity = '1';
         });
     </script>
-</body>
-</html>
+
