@@ -17,6 +17,13 @@ prod.adobegenuine.com
 genuine.adobe.com
 adobegenuine.com
 
+*.adobe.com
+*.adobe.io
+*.adobedc.net
+*.adobeoobe.com
+
+
+
 # Adobe通配符规则（覆盖所有子域名）
 ||adobe.com^
 ||adobe.io^
