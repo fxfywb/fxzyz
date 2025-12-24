@@ -1,0 +1,24 @@
+# Adobe激活与授权域名
+activate.adobe.com
+practivate.adobe.com
+ereg.adobe.com
+lm.licenses.adobe.com
+na1r.services.adobe.com
+na1e.services.adobe.com
+auth.services.adobe.com
+adobeid.services.adobe.com
+ids-proxy.account.adobe.com
+
+# Adobe更新与后台服务域名
+swupmf.adobe.com
+swupdl.adobe.com
+ardownload.adobe.com
+prod.adobegenuine.com
+genuine.adobe.com
+adobegenuine.com
+
+# Adobe通配符规则（覆盖所有子域名）
+||adobe.com^
+||adobe.io^
+||adobedc.net^
+||adobeoobe.com^
